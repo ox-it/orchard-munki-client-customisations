@@ -1,0 +1,47 @@
+<script type="text/javascript">
+var currentSlide = 0, playing = 1
+
+function slides(){
+    return document.querySelectorAll('div.stage>img')
+}
+
+function showSlide(slideNumber){
+    theSlides = slides()
+    for (c=0; c<theSlides.length; c++) {
+        theSlides[c].style.opacity="0";
+    }
+    theSlides[slideNumber].style.opacity="1";
+}
+
+function showNextSlide(){
+    if (playing) {
+        currentSlide = (currentSlide > slides().length-2) ? 0 : currentSlide + 1;
+        showSlide(currentSlide);
+    }
+}
+
+function stageClicked() {
+    slide = slides()[currentSlide];
+    target = slide.getAttribute('target');
+    if (target == '_blank') {
+        window.AppController.openExternalLink_(slide.getAttribute('href'));
+    } else {
+        window.location.href = slide.getAttribute('href');
+    }
+}
+
+window.onload=function(){
+    showSlide(0);
+    if (slides().length > 1) {
+        setInterval(showNextSlide, 7500);
+    }
+}
+</script>
+
+<div class="showcase">
+    <div class="stage" onClick='stageClicked();'>
+        <img alt="Orchard Software Centre" src="custom/resources/OSC3.png" />
+        <img alt="Upgrade to Yosemite to use the App Store" src="custom/resources/OSC5.png" />
+        <img href="category-Creative%20Cloud.html" alt="Adobe Creative Cloud 2015 now available" src="custom/resources/OSC8.png" />
+    </div>
+</div>
