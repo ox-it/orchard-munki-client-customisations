@@ -24,7 +24,7 @@ function stageClicked() {
     slide = slides()[currentSlide];
     target = slide.getAttribute('target');
     if (target == '_blank') {
-        window.AppController.openExternalLink_(slide.getAttribute('href'));
+        window.webkit.messageHandlers.openExternalLink.postMessage(slide.getAttribute('href'));
     } else {
         window.location.href = slide.getAttribute('href');
     }
@@ -40,8 +40,8 @@ window.onload=function(){
 
 <div class="showcase">
     <div class="stage" onClick='stageClicked();'>
-        <img alt="Orchard Software Centre" src="custom/resources/OSC3.png" />
-        <img href="detail-Install_macOS_High_Sierra.html" alt="Upgrade to macOS High Sierra" src="custom/resources/OSC5.png" />
-        <img href="category-Creative%20Cloud%202018.html" alt="Adobe Creative Cloud 2018 now available" src="custom/resources/OSC8.png" />
+        <img href="https://docs.orchard.ox.ac.uk/OrchardSoftwareCentre" alt="Orchard Software Centre" src="custom/resources/OSC3.png" />
+        <img href="munki://detail-Install_macOS_Catalina.html" alt="Upgrade to macOS Catalina" src="custom/resources/OSC5.png" />
+        <img href="munki://category-Creative%20Cloud.html" alt="Adobe Creative Cloud" src="custom/resources/OSC8.png" />
     </div>
 </div>
